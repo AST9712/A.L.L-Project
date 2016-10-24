@@ -5,15 +5,16 @@ pygame.init()
 
 #defining some constants
 
-WIN_H = 600
-WIN_W = 700
-CURRENT_PLYR = 'X'
+WIN_H = 700
+WIN_W = 600
+PLYR_X = True
 
 BLACK = (0,   0,   0)
 WHITE = (255, 255, 255)
 
-WINDOW = pygame.display.set_mode((WIN_H, WIN_W), 0, 32)
-CHAR_FONT = pygame.font.SysFont("monospace", 200)
+WINDOW = pygame.display.set_mode((WIN_W, WIN_H), 0, 32)
+CHAR_FONT_X = pygame.font.SysFont("monospace", 200)
+CHAR_FONT_O = pygame.font.SysFont("monospace", 275)
 TEXT_FONT = pygame.font.SysFont("monospace", 12)
 
 class board: # make this its own file later
@@ -48,8 +49,9 @@ def checkValidClick():
     x, y = pygame.mouse.get_pos()
     
     if x < 200 and y < 200:       
-        if board.boardMatrix[0][0] == 0:            
-            drawX(40, -10)
+        if board.boardMatrix[0][0] == 0:
+            #drawX(40, -10)
+            drawO(18, -70)
             board.boardMatrix[0][0] = 1        
         
     elif x < 400 and y < 200:
@@ -90,14 +92,18 @@ def checkValidClick():
     elif x < 600 and y < 600:
         if board.boardMatrix[2][2] == 0: 
             drawX(440, 390)
-            board.boardMatrix[2][2] = 1
-        
+            board.boardMatrix[2][2] = 1        
     
 
-def drawX(a, b):
-    
-    drawXCHAR = CHAR_FONT.render("X", True, WHITE) 
-    WINDOW.blit(drawXCHAR, (a, b))       
+def drawX(a, b):    
+    drawXCHAR = CHAR_FONT_X.render("X", True, WHITE)
+    #pygame.draw.line(WINDOW, WHITE, (a+15, b+50), (a+105, b+160), 13)
+    #pygame.draw.line(WINDOW, WHITE, (a+105, b+50), (a+15, b+160), 13)
+    WINDOW.blit(drawXCHAR, (a, b))
+
+def drawO(a, b):
+    drawOCHAR = CHAR_FONT_O.render("o", True, WHITE)
+    WINDOW.blit(drawOCHAR, (a, b))
 
 def gameStart():
     
