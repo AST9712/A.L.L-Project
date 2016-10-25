@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, checkValid
 from pygame.locals import *
 
 pygame.init()
@@ -20,7 +20,6 @@ TEXT_FONT = pygame.font.SysFont("monospace", 12)
 class board: # make this its own file later
     
     boardMatrix = [[0 for x in range(3)] for y in range(3)]
-
 
 def makeWindow():    
     pygame.display.set_caption('TIC-TAC-TOE')
@@ -44,57 +43,6 @@ def drawBoard():
 
     gameStart()
 
-def checkValidClick():
-    
-    x, y = pygame.mouse.get_pos()
-    
-    if x < 200 and y < 200:       
-        if board.boardMatrix[0][0] == 0:
-            #drawX(40, -10)
-            drawO(18, -70)
-            board.boardMatrix[0][0] = 1        
-        
-    elif x < 400 and y < 200:
-        if board.boardMatrix[1][0] == 0: 
-            drawX(240, -10)
-            board.boardMatrix[1][0] = 1
-        
-    elif x < 600 and y < 200:
-        if board.boardMatrix[2][0] == 0: 
-            drawX(440, -10)
-            board.boardMatrix[2][0] = 1
-
-    elif x < 200 and y < 400:
-        if board.boardMatrix[0][1] == 0: 
-            drawX(40, 190)
-            board.boardMatrix[0][1] = 1
-
-    elif x < 400 and y < 400:
-        if board.boardMatrix[1][1] == 0: 
-            drawX(240, 190)
-            board.boardMatrix[1][1] = 1
-
-    elif x < 600 and y < 400:
-        if board.boardMatrix[2][1] == 0: 
-            drawX(440, 190)
-            board.boardMatrix[2][1] = 1
-
-    elif x < 200 and y < 600:
-        if board.boardMatrix[0][2] == 0: 
-            drawX(40, 390)
-            board.boardMatrix[0][2] = 1
-
-    elif x < 400 and y < 600:
-        if board.boardMatrix[1][2] == 0: 
-            drawX(240, 390)
-            board.boardMatrix[1][2] = 1
-
-    elif x < 600 and y < 600:
-        if board.boardMatrix[2][2] == 0: 
-            drawX(440, 390)
-            board.boardMatrix[2][2] = 1        
-    
-
 def drawX(a, b):    
     drawXCHAR = CHAR_FONT_X.render("X", True, WHITE)
     #pygame.draw.line(WINDOW, WHITE, (a+15, b+50), (a+105, b+160), 13)
@@ -114,7 +62,7 @@ def gameStart():
                 sys.exit()
                 
             if event.type == pygame.MOUSEBUTTONUP:
-                checkValidClick()
+                checkValid.checkValidClick(pygame.mouse.get_pos())
                     
         pygame.display.update()
 
