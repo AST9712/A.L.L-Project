@@ -3,7 +3,9 @@ from pygame.locals import *
 
 pygame.init()
 
-#defining some constants
+"""
+
+"""
 
 WIN_H = 700
 WIN_W = 600
@@ -21,10 +23,16 @@ class board: # make this its own file later
     
     boardMatrix = [[0 for x in range(3)] for y in range(3)]
 
+"""
+
+"""
 def makeWindow():    
     pygame.display.set_caption('TIC-TAC-TOE')
     drawBoard()
-
+    
+"""
+This function draws the main screen, fills the background black:
+"""
 def drawBoard():
     
     WINDOW.fill(BLACK)
@@ -43,16 +51,23 @@ def drawBoard():
 
     gameStart()
 
+"""
+
+"""
 def drawX(a, b):
     drawXCHAR = CHAR_FONT_X.render("X", True, WHITE)
-    #pygame.draw.line(WINDOW, WHITE, (a+15, b+50), (a+105, b+160), 13)
-    #pygame.draw.line(WINDOW, WHITE, (a+105, b+50), (a+15, b+160), 13)
     WINDOW.blit(drawXCHAR, (a, b))
 
+"""
+
+"""
 def drawO(a, b):
     drawOCHAR = CHAR_FONT_O.render("o", True, WHITE)
     WINDOW.blit(drawOCHAR, (a, b))
 
+"""
+
+"""
 def gameStart():
     
     while True:
