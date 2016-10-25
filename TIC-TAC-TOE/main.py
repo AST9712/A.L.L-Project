@@ -43,7 +43,7 @@ def drawBoard():
 
     gameStart()
 
-def drawX(a, b):    
+def drawX(a, b):
     drawXCHAR = CHAR_FONT_X.render("X", True, WHITE)
     #pygame.draw.line(WINDOW, WHITE, (a+15, b+50), (a+105, b+160), 13)
     #pygame.draw.line(WINDOW, WHITE, (a+105, b+50), (a+15, b+160), 13)
@@ -62,7 +62,8 @@ def gameStart():
                 sys.exit()
                 
             if event.type == pygame.MOUSEBUTTONUP:
-                checkValid.checkValidClick(pygame.mouse.get_pos())
+                if event.button == 1:
+                    checkValid.checkValidClick(pygame.mouse.get_pos())
                     
         pygame.display.update()
 
