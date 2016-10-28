@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 def checkWin():
     import main    
     diag1 = (main.board.boardMatrix[0][0], main.board.boardMatrix[1][1], main.board.boardMatrix[2][2])
@@ -20,21 +19,3 @@ def checkWin():
     if all(x == 1 for x in (diag2)) or all(x == 2 for x in (diag2)):
         return True
 
-=======
-#0 is draw, 1 is X, 2 is O
-
-test = [[0 for x in range(3)] for y in range(3)]
-
-for x in range(3):
-    test[0][x] = 23
-    test[1][x] = 5
-    test[2][x] = 66
-
-
-
-def checkWin():
-    print(all(x == test[0][0] for x in test))
-
-        
-checkWin()
->>>>>>> 0faff18b5846ce74fb382bb8ff0f607edbe47a63
