@@ -1,4 +1,4 @@
-import pygame, sys, checkValid
+import pygame, sys, checkValid, checkWin
 from pygame.locals import *
 
 pygame.init()
@@ -64,6 +64,15 @@ def drawX(a, b):
 def drawO(a, b):
     drawOCHAR = CHAR_FONT_O.render("o", True, WHITE)
     WINDOW.blit(drawOCHAR, (a, b))
+
+"""
+
+"""
+def onWin():
+    if PLYR_X == True:
+        print("X win")
+    else:
+        print("O win")
 
 """
 
