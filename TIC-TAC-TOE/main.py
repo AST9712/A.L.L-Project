@@ -19,6 +19,8 @@ CHAR_FONT_X = pygame.font.SysFont("monospace", 200)
 CHAR_FONT_O = pygame.font.SysFont("monospace", 275)
 TEXT_FONT = pygame.font.SysFont("monospace", 12)
 
+WINNING_HORIZ = 0
+
 class board: # make this its own file later
     
     boardMatrix = [[0 for x in range(3)] for y in range(3)]
@@ -68,9 +70,22 @@ def drawO(a, b):
 """
 
 """
-def onWin():
+def drawWinLine(line):    
+    if line == 0:
+        if PLYR_X == True:
+            pygame.draw.line(WINDOW, WHITE, (50, 100), (550, 100), 3)
+        elif PLYR_X == False:
+            pygame.draw.line(WINDOW, WHITE, (25, 100), (575, 100), 3)
+    
+
+"""
+
+"""
+def onWin():    
+    drawWinLine(WINNING_HORIZ)
     if PLYR_X == True:
         print("X win")
+        
     else:
         print("O win")
 

@@ -6,6 +6,7 @@ def checkWin():
     for z in range(0, 3):
         across = (main.board.boardMatrix[0][z], main.board.boardMatrix[1][z], main.board.boardMatrix[2][z])
         if all(x == 1 for x in (across)) or all(x == 2 for x in (across)):
+            main.WINNING_HORIZ = z
             return True
             
     for z in range(0, 3):
@@ -19,3 +20,5 @@ def checkWin():
     if all(x == 1 for x in (diag2)) or all(x == 2 for x in (diag2)):
         return True
 
+
+        
