@@ -1,5 +1,5 @@
 def checkWin():
-    import main    
+    import main
     diag1 = (main.boardMatrix[0][0], main.boardMatrix[1][1], main.boardMatrix[2][2])
     diag2 = (main.boardMatrix[2][0], main.boardMatrix[1][1], main.boardMatrix[0][2])
 

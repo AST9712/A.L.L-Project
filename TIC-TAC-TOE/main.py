@@ -11,6 +11,9 @@ WIN_H = 700
 WIN_W = 600
 PLYR_X = True
 
+X_WINS = 0
+O_WINS = 0
+
 BLACK = (0,   0,   0)
 WHITE = (255, 255, 255)
 
@@ -24,11 +27,10 @@ WIN_TYPE = 0
 
 boardMatrix = [[0 for x in range(3)] for y in range(3)]
 
-
 def newBoard():
+    global boardMatrix    
     boardMatrix = [[0 for x in range(3)] for y in range(3)]
-    for i in range(0, 3):
-        print(boardMatrix[i][0])
+    
 
 """
 
@@ -56,7 +58,7 @@ def drawBoard():
     pygame.draw.line(WINDOW, WHITE, (0, 698), (600, 698), 3)  # H3
 
     pygame.draw.line(WINDOW, WHITE, (197, 0), (197, 599), 3)  # V1
-    pygame.draw.line(WINDOW, WHITE, (397, 0), (397, 599), 3)  # V2    
+    pygame.draw.line(WINDOW, WHITE, (397, 0), (397, 599), 3)  # V2
 
 """
 
@@ -76,11 +78,7 @@ def drawO(a, b):
 
 """
 def drawWinLine():
-    x = 0
-    if WINNING == 1:
-        x = 200
-    elif WINNING == 2:
-        x = 400
+    x = (int(WINNING)*200)
         
     if PLYR_X == True:
         if WIN_TYPE == 0:
@@ -95,6 +93,8 @@ def drawWinLine():
     elif PLYR_X == False:
         if WIN_TYPE == 0:
             pygame.draw.line(WINDOW, WHITE, (25, 25), (575, 575), 3)
+        elif WIN_TYPE == 1:
+            pygame.draw.line(WINDOW, WHITE, (575, 25), (25, 575), 3)
         elif WIN_TYPE == 2:
             pygame.draw.line(WINDOW, WHITE, (25, 100+x), (575, 100+x), 3)
         else:
@@ -105,10 +105,9 @@ def drawWinLine():
 """
 
 """
-def onWin():    
+def onWin():
     drawWinLine()
     pauseGame(2)
-    print("hello")
     gameReset()
     
 """
@@ -116,14 +115,22 @@ def onWin():
 """
 def pauseGame(x):
     pygame.time.delay(x*1000)
-    
+
+
+def swapPlayer():
+    global PLYR_X
+    PLYR_X = not PLYR_X 
+
+def resetVars():
+    global WINNING, WIN_TYPE
+    WINNING = 0
+    WIN_TYPE = 0 
 
 def gameReset():
-    print("yo")
+    swapPlayer()
     drawBoard()
-    newBoard()
-    WINNING = 0
-    WIN_TYPE = 0    
+    resetVars()
+    newBoard()   
     gameStart()
     
 """
@@ -139,7 +146,6 @@ def gameStart():
                 
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
-                    print(str(pygame.mouse.get_pos()))
                     checkValid.checkValidClick(pygame.mouse.get_pos())
                     
         pygame.display.update()
