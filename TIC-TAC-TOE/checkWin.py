@@ -25,6 +25,8 @@ def checkWin():
             main.WINNING = z
             return True
 
-
+    if main.VALID_CLICKS == 8:
+        main.WIN_TYPE = 4
+        return True
 
         
