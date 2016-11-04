@@ -1,4 +1,4 @@
-import pygame, sys, checkValid, checkWin, time
+import pygame, sys, checkValid, checkWin, time 
 from pygame.locals import *
 
 pygame.init()
@@ -10,6 +10,8 @@ pygame.init()
 WIN_H = 700
 WIN_W = 600
 PLYR_X = True
+
+VALID_CLICKS = 0
 
 X_WINS = 0
 O_WINS = 0
@@ -87,7 +89,7 @@ def drawWinLine():
             pygame.draw.line(WINDOW, WHITE, (575, 25), (25, 575), 3)            
         elif WIN_TYPE == 2:
             pygame.draw.line(WINDOW, WHITE, (50, 100+x), (550, 100+x), 3)
-        else:
+        elif WIN_TYPE == 3:
             pygame.draw.line(WINDOW, WHITE, (100+x, 50), (100+x, 550), 3)
 
     elif PLYR_X == False:
@@ -97,8 +99,8 @@ def drawWinLine():
             pygame.draw.line(WINDOW, WHITE, (575, 25), (25, 575), 3)
         elif WIN_TYPE == 2:
             pygame.draw.line(WINDOW, WHITE, (25, 100+x), (575, 100+x), 3)
-        else:
-            pygame.draw.line(WINDOW, WHITE, (100+x, 25), (100+x, 575), 3)   
+        elif WIN_TYPE == 3:
+            pygame.draw.line(WINDOW, WHITE, (100+x, 25), (100+x, 575), 3)        
         
     pygame.display.update()
     
@@ -118,13 +120,16 @@ def pauseGame(x):
 
 
 def swapPlayer():
-    global PLYR_X
-    PLYR_X = not PLYR_X 
+    global PLYR_X, VALID_CLICKS
+    PLYR_X = not PLYR_X
+    VALID_CLICKS += 1
+    print(VALID_CLICKS)
 
 def resetVars():
-    global WINNING, WIN_TYPE
+    global WINNING, WIN_TYPE, VALID_CLICKS
     WINNING = 0
-    WIN_TYPE = 0 
+    WIN_TYPE = 0
+    VALID_CLICKS = 0
 
 def gameReset():
     swapPlayer()
