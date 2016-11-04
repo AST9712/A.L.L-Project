@@ -29,4 +29,4 @@ def checkWin():
         main.WIN_TYPE = 4
         return True
 
-        
+

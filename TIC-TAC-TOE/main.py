@@ -113,24 +113,38 @@ def onWin():
     gameReset()
     
 """
-
+This function uses PyGame's in-built delay function to cause a delay when needed.
+In the context of the game it's used to pause the game on a win to let the player
+see who won and gives a little break between rounds.
 """
 def pauseGame(x):
     pygame.time.delay(x*1000)
 
-
+"""
+This function swaps the player between X and O every time it is called. Also the
+amount of valid clicks increments by 1 when it's called as to swap a player it
+must have been a valid move to start with. (Used for the draw condition)
+"""
 def swapPlayer():
     global PLYR_X, VALID_CLICKS
     PLYR_X = not PLYR_X
     VALID_CLICKS += 1
-    print(VALID_CLICKS)
 
+"""
+This function resets all the variables that need to be reset when the game runs again.
+For example the 
+"""
 def resetVars():
     global WINNING, WIN_TYPE, VALID_CLICKS
     WINNING = 0
     WIN_TYPE = 0
     VALID_CLICKS = 0
 
+"""
+This function is called when a win or draw has occured. It then runs all the functions
+in main that handle the resetting of the game in order for it to work again as if it
+has never been run before.
+"""
 def gameReset():
     swapPlayer()
     drawBoard()
